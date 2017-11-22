@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>灰阶过滤器</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <canvas id="drawing" width="200" height="200">there is drawing something</canvas>
+    <img src="images/1.png" alt="">
+    <script>
+        //灰度过滤器，最后的结果是彩色的图片变成了黑白的
+        var drawing = document.getElementById("drawing");
+
+        if(drawing.getContext){
+            var ctx = drawing.getContext("2d");
+            var image = document.images[0];//document.images获取页面的img整个标签
+
+            //绘制原始图像
+            ctx.drawImage(image,0,0);
+
+            //取得图像数据
+            imageData = ctx.getImageData(0,0,image.width,image.height);
+            //返回的对象imageData的实例，在此个图像中，返回的是ImageData {data: Uint8ClampedArray(5184), width: 36, height: 36}。第一个属性是一个数组，保存图像中每一个像素的数据
+
+            var data = imageData.data;
+
+            for(var i = 0;i<data.length;i+=4){
+
+                var red = data[i];
+                var green = data[i+1];
+                var blue = data[i+2];
+                var alpha = data[i+3];
+
+                //求得rgb的平均值
+                var average = Math.floor((red+green+blue)/3);
+
+                //设置颜色值，透明度不变
+                data[i] = average;
+                data[i+1] = average;
+                data[i+2] = average;
+
+            }
+
+            //回写图像数据并显示结果
+            imageData.data = data;
+            ctx.putImageData(imageData,0,0);
+
+        }
+    </script>
+
+</body>
+</html>

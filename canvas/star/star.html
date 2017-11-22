@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>star girl</title>
+</head>
+<body>
+    <canvas id="drawing" width="800" height="600"></canvas>
+    <script src="js/stars.js"></script>
+    <script>
+        var drawing = document.getElementById("drawing");
+        var ctx = drawing.getContext("2d");
+        var width = drawing.width;
+        var height = drawing.height;
+
+        var num = 60;
+        var stars = [];
+
+        var girlPic = new Image();
+        var starPic = new Image();
+
+
+        function init(){
+            girlPic.src = "src/girl.jpg";
+            starPic.src = "src/star.png";
+
+            for (var i = 0; i < num; i++) {
+                var obj = new starObj();
+                stars.push(obj);
+                stars[i].init();
+            }
+
+            loop();
+
+        }
+
+        //绘制背景
+        function drawBackground(){
+            ctx.fillStyle = "#513155";
+            ctx.fillRect(0,0,width,height);
+
+        }
+        //绘制女孩
+        function drawGirl() {
+            ctx.drawImage(girlPic,100,150,600,300);
+        }
+
+        init();
+
+        function loop(){
+            setTimeout(loop,100);
+            drawBackground();
+            drawGirl();
+            drawStars();
+        }
+
+
+    </script>
+</body>
+</html>

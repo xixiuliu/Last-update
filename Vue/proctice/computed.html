@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+    <div id="example">
+        <template v-if= "loginType">
+            <label>Username</label>
+            <input placeholder="Enter your username">
+        </template>
+        <template v-else>
+            <label>Email</label>
+            <input placeholder="Enter your email address">
+        </template>
+
+        <button @click="ifLoginType()">toggle login type</button>
+    </div>
+
+    <script>
+        var vm = new Vue({
+            el: '#example',
+            data: function () {
+                return {
+                    loginType: true
+                }
+            },
+            methods: {
+                ifLoginType: function () {
+                    this.loginType =  !this.loginType
+                }
+            }
+        })
+    </script>
+</body>
+</html>

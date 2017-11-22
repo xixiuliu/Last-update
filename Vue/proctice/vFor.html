@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>列表渲染</title>
+    <script src="https://unpkg.com/vue"></script>
+</head>
+<body>
+   <ul id="example-1">
+       <li v-for="(item,index) in items">
+           {{item.message}}-{{index}}
+       </li>
+   </ul>
+
+   <ul id="example-2">
+       <li v-for="n in 10">
+           {{n}}
+       </li>
+   </ul>
+
+   <ul id="example-3">
+       <template v-for="item in items">
+           <li>{{item.message}}</li>
+           <li class="divider"></li>
+       </template>
+   </ul>
+    <script>
+        var example = new Vue({
+            el: '#example-1',
+            data: function () {
+                return {
+                    items: [
+                        {message:'aaaa'},
+                        {message:'vvvv'}
+                    ]
+                }
+            }
+        })
+
+        var example2 = new Vue({
+            el: '#example-2',
+            data: function () {
+                return {
+
+                }
+            }
+        })
+
+        var example3 = new Vue({
+            el: '#example-3',
+            data: function () {
+                return {
+                    items: [
+                        {message:'aaaa'},
+                        {message:'vvvv'}
+                    ]
+                }
+            }
+        })
+    </script>
+</body>
+</html>

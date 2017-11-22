@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绘制矩形</title>
+</head>
+<body>
+    <canvas id="drawing" width="200" height="200">drawing something</canvas>
+
+    <script>
+        //canvas是以左上角为(0,0)起点
+        //矩形是唯一一种可以在2d上下文中直接绘制的形状
+        var drawing = document.getElementById('drawing');
+        if(drawing.getContext){
+            var context = drawing.getContext('2d');
+            //填充
+            context.fillStyle = "red";
+            context.fillRect(10,10,50,50);
+
+            context.fillStyle = "rgba(0,0,0,0.4)";
+            context.fillRect(30,30,50,50);
+
+            context.clearRect(40,40,10,10);
+
+            //描边
+            context.strokeStyle = "blue";
+            //context.lineWidth = "10";//描边的宽度
+            context.strokeRect(10,10,50,50);
+
+            context.strokeStyle = "black";
+            context.strokeRect(30,30,50,50);
+        }
+
+    </script>
+</body>
+</html>
